@@ -29,8 +29,24 @@ retrieveSingleProduct = (req, res) => {
         .catch((err) => res.send(err));
 };
 
+updateProduct = (req, res) => {
+    console.log("PUT Update Product");
+
+    const updates = {
+        productName: req.body.productName,
+        description: req.body.description,
+        price: req.body.price,
+        isActive: req.body.isActive,
+    };
+
+    Product.findByIdAndUpdate(req.params.id, updates, { new: true })
+        .then((updatedProduct) => res.send(updatedProduct))
+        .catch((err) => res.send(err));
+};
+
 module.exports = {
     createProduct,
     retrieveAllProducts,
     retrieveSingleProduct,
+    updateProduct,
 };
