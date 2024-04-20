@@ -36,3 +36,10 @@ module.exports.verifyAdmin = (req, res, next) => {
     }
     next();
 };
+
+module.exports.verifyNotAdmin = (req, res, next) => {
+    if (req.user.isAdmin) {
+        res.send({ message: "User not authorized." });
+    }
+    next();
+};

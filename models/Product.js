@@ -12,6 +12,22 @@ const productSchema = mongoose.Schema({
     price: { type: Number, required: [true, "Price is Required"] },
     dateRegistered: { type: Date, default: new Date() },
     isActive: { type: Boolean, default: true },
+    orders: [
+        {
+            products: [
+                {
+                    productId: String,
+                    productName: String,
+                    priceSold: Number,
+                    quantity: Number,
+                },
+            ],
+            totalAmount: Number,
+            userId: String,
+            dateOrdered: { type: Date, default: new Date() },
+            orderStatus: { type: String, default: "Complete" },
+        },
+    ],
 });
 
 module.exports = mongoose.model("Product", productSchema, "products");

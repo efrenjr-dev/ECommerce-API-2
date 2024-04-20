@@ -92,9 +92,46 @@ setAdmin = (req, res) => {
         .catch((err) => res.send(err));
 };
 
+createOrder = async (req, res) => {
+    console.log("PUT Create Order");
+
+    let productsArray = [];
+
+    productsArray = req.body.products.map((product) => {
+        console.log(product);
+        return {
+            productId: product.productId,
+            productName: product.productName,
+            priceSold: product.priceSold,
+            quantity: product.quantity,
+        };
+    });
+    console.log(productsArray);
+
+    let isUserUpdated = await User.findById(req.user.id).then((foundUser) => {
+        foundUser.orders.push({
+            products: productsArray,
+            totalAmount: req.body.totalAmount,
+            userId: req.user.id,
+        });
+
+        return foundUser
+            .save()
+            .then((result) => true)
+            .catch((err) => err.message);
+    });
+
+    console.log(`isUserUpdated: ${isUserUpdated}`);
+    if (isUserUpdated !== true) return res.send({ isProductUpdate });
+
+    
+    return res.send({ message: "User is Updated" });
+};
+
 module.exports = {
     testController,
     registerUser,
     loginUser,
     setAdmin,
+    createOrder,
 };

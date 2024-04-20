@@ -17,15 +17,14 @@ const userSchema = new mongoose.Schema({
                 {
                     productId: String,
                     productName: String,
-                    description: String,
                     priceSold: Number,
                     quantity: Number,
-                    subTotalAmount: Number,
                 },
             ],
             totalAmount: Number,
-            dateOrdered: { type: Date },
-            status: { type: String },
+            userId: String,
+            dateOrdered: { type: Date, default: new Date() },
+            orderStatus: { type: String, default: "Complete" },
         },
     ],
 });
