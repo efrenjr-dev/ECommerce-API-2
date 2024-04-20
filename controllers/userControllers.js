@@ -169,7 +169,7 @@ createOrder = async (req, res) => {
     }
 };
 
-getAllOrders = async (req, res) => {
+getAllOrders = (req, res) => {
     console.log("GET All Orders");
 
     let ordersArray = [];
@@ -189,6 +189,16 @@ getAllOrders = async (req, res) => {
         .catch((err) => res.send(err));
 };
 
+getUserOrders = (req, res) => {
+    console.log("GET User Orders");
+
+    User.findById(req.user.id)
+        .then((foundUser) => {
+            res.send(foundUser.orders);
+        })
+        .catch((err) => res.send(err));
+};
+
 module.exports = {
     testController,
     registerUser,
@@ -196,4 +206,5 @@ module.exports = {
     setAdmin,
     createOrder,
     getAllOrders,
+    getUserOrders,
 };
