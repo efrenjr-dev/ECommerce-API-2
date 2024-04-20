@@ -14,15 +14,8 @@ const productSchema = mongoose.Schema({
     isActive: { type: Boolean, default: true },
     orders: [
         {
-            products: [
-                {
-                    productId: String,
-                    productName: String,
-                    priceSold: Number,
-                    quantity: Number,
-                },
-            ],
-            totalAmount: Number,
+            priceSold: Number,
+            quantity: Number,
             userId: String,
             dateOrdered: { type: Date, default: new Date() },
             orderStatus: { type: String, default: "Complete" },

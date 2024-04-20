@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const SALT = process.env.SALT;
 const { createAccessToken } = require("../auth");
+const Product = require("../models/Product");
 
 testController = (req, res) => {
     console.log("TEST User Controller");
@@ -121,11 +122,51 @@ createOrder = async (req, res) => {
             .catch((err) => err.message);
     });
 
-    console.log(`isUserUpdated: ${isUserUpdated}`);
-    if (isUserUpdated !== true) return res.send({ isProductUpdate });
+    console.log(`isUserUpdated? ${isUserUpdated}`);
+    if (isUserUpdated !== true)
+        return res.send({ message: "User is not Updated." });
 
-    
-    return res.send({ message: "User is Updated" });
+    let isSingleProductUpdated = false;
+    let productUpdateCounter = 0;
+
+    for (let index = 0; index < productsArray.length; index++) {
+        // console.log(index);
+        isSingleProductUpdated = await Product.findById(
+            productsArray[index].productId
+        )
+            .then((foundProduct) => {
+                foundProduct.orders.push({
+                    quantity: productsArray[index].quantity,
+                    priceSold: productsArray[index].priceSold,
+                    userId: req.user.id,
+                });
+
+                return foundProduct
+                    .save()
+                    .then((result) => true)
+                    .catch((err) => err.message);
+            })
+            .catch((err) => err.message);
+        // console.log("isSingleProductUpdated? " + isSingleProductUpdated);
+        if (isSingleProductUpdated === true) {
+            productUpdateCounter++;
+            isSingleProductUpdated = false;
+        }
+    }
+    // console.log(
+    //     `productUpdateCounter ${productUpdateCounter} productArray.length ${productsArray.length}`
+    // );
+    let isProductUpdated = productUpdateCounter === productsArray.length;
+    console.log("isProductUpdated? " + isProductUpdated);
+    if (isProductUpdated !== true) {
+        return res.send({
+            message: `Only ${productUpdateCounter} of ${productsArray.length} Product(s) Updated.`,
+        });
+    }
+
+    if (isUserUpdated && isProductUpdated) {
+        return res.send({ message: "Order has been Created." });
+    }
 };
 
 module.exports = {
