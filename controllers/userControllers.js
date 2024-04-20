@@ -169,10 +169,31 @@ createOrder = async (req, res) => {
     }
 };
 
+getAllOrders = async (req, res) => {
+    console.log("GET All Orders");
+
+    let ordersArray = [];
+
+    User.find()
+        .then((foundUsers) => {
+            foundUsers.forEach((user) => {
+                user.orders.forEach((order) => {
+                    // console.log(order);
+                    if (order !== null) {
+                        ordersArray.push(order);
+                    }
+                });
+            });
+            return res.send(ordersArray);
+        })
+        .catch((err) => res.send(err));
+};
+
 module.exports = {
     testController,
     registerUser,
     loginUser,
     setAdmin,
     createOrder,
+    getAllOrders,
 };
