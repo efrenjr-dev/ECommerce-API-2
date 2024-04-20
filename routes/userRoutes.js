@@ -16,7 +16,7 @@ const {
 
 router.get("/", testController);
 router.post("/register", registerUser);
-router.put("/login", loginUser);
+router.post("/login", loginUser);
 router.put("/setAdmin/:id", verify, verifyAdmin, setAdmin);
 router.put("/createOrder", verify, verifyNotAdmin, createOrder);
 router.get("/allOrders", verify, verifyAdmin, getAllOrders);
