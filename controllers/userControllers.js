@@ -46,7 +46,7 @@ registerUser = (req, res) => {
 
 loginUser = (req, res) => {
     console.log("PUT Login");
-    // res.send({ message: "PUT Login" });
+    //return res.send({ message: "PUT Login" });
     console.log(req.body);
 
     User.findOne({ email: req.body.email })
@@ -76,8 +76,25 @@ loginUser = (req, res) => {
         .catch((err) => res.send(err));
 };
 
+setAdmin = (req, res) => {
+    console.log("PUT Set Admin");
+    // return res.send({ message: "PUT Set Admin", id: req.params.id });
+
+    let updates = { isAdmin: true };
+
+    User.findByIdAndUpdate(req.params.id, updates, { new: true })
+        .then((updatedUser) => {
+            if (updatedUser === null) {
+                res.send({ message: "No User Found." });
+            }
+            res.send(updatedUser);
+        })
+        .catch((err) => res.send(err));
+};
+
 module.exports = {
     testController,
     registerUser,
     loginUser,
+    setAdmin,
 };
