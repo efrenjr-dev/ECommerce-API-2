@@ -22,7 +22,15 @@ retrieveAllProducts = (req, res) => {
         .catch((err) => res.send(err));
 };
 
+retrieveSingleProduct = (req, res) => {
+    console.log("GET Single Product");
+    Product.findById(req.params.id)
+        .then((product) => res.send(product))
+        .catch((err) => res.send(err));
+};
+
 module.exports = {
     createProduct,
     retrieveAllProducts,
+    retrieveSingleProduct,
 };
