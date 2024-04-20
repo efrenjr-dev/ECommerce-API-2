@@ -1,10 +1,5 @@
 const Product = require("../models/Product");
 
-testController = (req, res) => {
-    console.log("TEST Product Controller");
-    res.send({ message: "TEST Product Controller" });
-};
-
 createProduct = (req, res) => {
     console.log("POST Create Product");
     // return res.send({ message: "POST Create Product" });
@@ -19,7 +14,15 @@ createProduct = (req, res) => {
         .catch((err) => res.send(err));
 };
 
+retrieveAllProducts = (req, res) => {
+    console.log("GET All Products");
+    // return res.send("GET All Products");
+    Product.find()
+        .then((products) => res.send(products))
+        .catch((err) => res.send(err));
+};
+
 module.exports = {
-    testController,
     createProduct,
+    retrieveAllProducts,
 };
