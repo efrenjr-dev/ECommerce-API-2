@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 4000;
@@ -15,6 +16,7 @@ async function main() {
 let db = mongoose.connection;
 db.once("open", () => console.log("Connected to MongoDB"));
 
+app.use(cors());
 app.use(express.json());
 
 const userRouter = require("./routes/userRoutes");
