@@ -44,9 +44,35 @@ updateProduct = (req, res) => {
         .catch((err) => res.send(err));
 };
 
+archiveProduct = (req, res) => {
+    console.log("PUT Archive Product");
+
+    const updates = {
+        isActive: false,
+    };
+
+    Product.findByIdAndUpdate(req.params.id, updates, { new: true })
+        .then((updatedProduct) => res.send(updatedProduct))
+        .catch((err) => res.send(err));
+};
+
+activateProduct = (req, res) => {
+    console.log("PUT Activate Product");
+
+    const updates = {
+        isActive: true,
+    };
+
+    Product.findByIdAndUpdate(req.params.id, updates, { new: true })
+        .then((updatedProduct) => res.send(updatedProduct))
+        .catch((err) => res.send(err));
+};
+
 module.exports = {
     createProduct,
     retrieveAllProducts,
     retrieveSingleProduct,
     updateProduct,
+    archiveProduct,
+    activateProduct,
 };
