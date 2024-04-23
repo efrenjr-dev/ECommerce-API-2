@@ -4,10 +4,6 @@ const SALT = process.env.SALT;
 const { createAccessToken } = require("../auth");
 const Product = require("../models/Product");
 
-testController = (req, res) => {
-    console.log("TEST User Controller");
-    res.send({ message: "TEST User Controller" });
-};
 
 registerUser = (req, res) => {
     console.log("POST User");
@@ -200,7 +196,6 @@ getUserOrders = (req, res) => {
 };
 
 module.exports = {
-    testController,
     registerUser,
     loginUser,
     setAdmin,

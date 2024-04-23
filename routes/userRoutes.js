@@ -5,7 +5,6 @@ const { verify, verifyAdmin, verifyNotAdmin } = require("../auth");
 const userControllers = require("../controllers/userControllers");
 
 const {
-    testController,
     registerUser,
     loginUser,
     setAdmin,
@@ -14,7 +13,6 @@ const {
     getUserOrders
 } = userControllers;
 
-router.get("/", testController);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.put("/setAdmin/:id", verify, verifyAdmin, setAdmin);
