@@ -1,8 +1,4 @@
 {
-    "buildCommand": "node index",
-    "devCommand": "nodemon index",
-    "framework": null,
-    "installCommand": "npm install",
     "rewrites": [
         {
             "source": "/(.*)",
@@ -10,4 +6,3 @@
         }
     ]
 }
-
