@@ -1,15 +1,6 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "/index.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
-    ]
+    "buildCommand": "node index",
+    "devCommand": "nodemon index",
+    "framework": null,
+    "installCommand": "npm install"
 }
