@@ -19,7 +19,7 @@ registerUser = (req, res) => {
 
     User.findOne({ email: req.body.email })
         .then((foundUser) => {
-            console.log(foundUser.email);
+            // console.log(foundUser);
             if (foundUser !== null && foundUser.email === req.body.email) {
                 return res.send({ message: "Duplicate Email Found." });
             } else {
