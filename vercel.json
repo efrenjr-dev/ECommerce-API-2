@@ -1,4 +1,8 @@
 {
+    "framework": "",
+	"installCommand": "",
+	"buildCommand": "",
+	"outputDirectory": "public",
     "rewrites": [
         {
             "source": "/(.*)",
