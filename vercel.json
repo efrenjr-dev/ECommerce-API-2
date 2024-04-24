@@ -1,8 +1,14 @@
 {
+    "buildCommand": "node index",
+    "devCommand": "nodemon index",
     "framework": null,
-	"installCommand": "",
-	"buildCommand": "",
-	"outputDirectory": "public",
+    "installCommand": "npm install",
+    "builds": [
+        {
+            "src": "/index.js",
+            "use": "@vercel/node"
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",
@@ -10,3 +16,4 @@
         }
     ]
 }
+
