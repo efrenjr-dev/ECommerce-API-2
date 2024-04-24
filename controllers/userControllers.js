@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-const SALT = process.env.SALT;
+const salt = 10;
 const { createAccessToken } = require("../auth");
 const Product = require("../models/Product");
 
@@ -14,7 +14,7 @@ registerUser = (req, res) => {
             message: "Password should be at least 8 characters.",
         });
 
-    const hashedPassword = bcrypt.hashSync(req.body.password, SALT);
+    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
     console.log(hashedPassword);
 
     User.findOne({ email: req.body.email })
