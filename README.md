@@ -15,6 +15,23 @@ Get All Orders (Admin only)\
 Get User Orders (Registered User only)\
 Activate Product (Admin only)
 
+## Credentials:
+
+**Admin User** \
+```console
+{
+	"email": "admin123@mail.com",
+	"password": "admin123"
+}
+```
+**Non-Admin User** \
+```console
+{
+	"email": "user1234@mail.com",
+	"password": "user1234"
+}
+```
+
 ## Routes and Request Body:
 
 **User Registration:** \
