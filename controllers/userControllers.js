@@ -32,7 +32,11 @@ registerUser = (req, res) => {
                 });
                 newUser
                     .save()
-                    .then((result) => res.send(result))
+                    .then((result) => res.send({
+                        status: true,
+                        message: `New user profile has been created for (${result.email})`,
+                      }
+                ))
                     .catch((err) => res.send(err));
             }
         })
