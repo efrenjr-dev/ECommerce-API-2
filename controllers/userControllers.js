@@ -4,15 +4,14 @@ const salt = 10;
 const { createAccessToken } = require("../auth");
 const Product = require("../models/Product");
 
-
 registerUser = (req, res) => {
     console.log("POST User");
     console.log(req.body);
 
     if (req.body.password.length < 8)
-        return res.send({
-            message: "Password should be at least 8 characters.",
-        });
+        return res
+            .status(400)
+            .send({ message: "Password should be at least 8 characters." });
 
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
     console.log(hashedPassword);
@@ -21,7 +20,9 @@ registerUser = (req, res) => {
         .then((foundUser) => {
             // console.log(foundUser);
             if (foundUser !== null && foundUser.email === req.body.email) {
-                return res.send({ message: "Duplicate Email Found." });
+                return res
+                    .status(400)
+                    .send({ message: "Duplicate Email Found." });
             } else {
                 const newUser = new User({
                     firstName: req.body.firstName,
@@ -32,11 +33,11 @@ registerUser = (req, res) => {
                 });
                 newUser
                     .save()
-                    .then((result) => res.send({
-                        status: true,
-                        message: `New user profile has been created for (${result.email})`,
-                      }
-                ))
+                    .then((result) =>
+                        res.send({
+                            message: `New user profile has been created for (${result.email})`,
+                        })
+                    )
                     .catch((err) => res.send(err));
             }
         })
