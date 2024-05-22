@@ -9,9 +9,10 @@ registerUser = (req, res) => {
     console.log(req.body);
 
     if (req.body.password.length < 8)
-        return res
-            .status(400)
-            .send({ message: "Password should be at least 8 characters." });
+        return res.status(400).send({
+            status: false,
+            message: "Password should be at least 8 characters.",
+        });
 
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
     console.log(hashedPassword);
@@ -22,7 +23,7 @@ registerUser = (req, res) => {
             if (foundUser !== null && foundUser.email === req.body.email) {
                 return res
                     .status(400)
-                    .send({ message: "Duplicate Email Found." });
+                    .send({ status: false, message: "Duplicate Email Found." });
             } else {
                 const newUser = new User({
                     firstName: req.body.firstName,
@@ -35,6 +36,7 @@ registerUser = (req, res) => {
                     .save()
                     .then((result) =>
                         res.send({
+                            status: true,
                             message: `New user profile has been created for (${result.email})`,
                         })
                     )
