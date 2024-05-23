@@ -14,7 +14,7 @@ const {
     getUserDetails,
 } = userControllers;
 
-router.get("/", getUserDetails);
+router.get("/", verify, getUserDetails);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.put("/setAdmin/:id", verify, verifyAdmin, setAdmin);

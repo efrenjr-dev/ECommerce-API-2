@@ -87,14 +87,7 @@ loginUser = (req, res) => {
 };
 
 getUserDetails = (req, res) => {
-    const token = req.headers.authorization.slice(7);
-    jwt.verify(token, SECRET, function (err, decoded) {
-        if (err) {
-            return res.send(err);
-        } else {
-            res.send(decoded);
-        }
-    });
+    res.send(req.user);
 };
 
 setAdmin = (req, res) => {
