@@ -10,9 +10,10 @@ const {
     setAdmin,
     createOrder,
     getAllOrders,
-    getUserOrders
+    getUserOrders,
 } = userControllers;
 
+router.get("/", getUserDetails);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.put("/setAdmin/:id", verify, verifyAdmin, setAdmin);
