@@ -11,6 +11,7 @@ const {
     createOrder,
     getAllOrders,
     getUserOrders,
+    getUserDetails,
 } = userControllers;
 
 router.get("/", getUserDetails);

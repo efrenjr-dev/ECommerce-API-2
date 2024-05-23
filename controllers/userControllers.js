@@ -226,4 +226,5 @@ module.exports = {
     createOrder,
     getAllOrders,
     getUserOrders,
+    getUserDetails,
 };
