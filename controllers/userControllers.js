@@ -9,7 +9,7 @@ registerUser = (req, res) => {
     console.log(req.body);
 
     if (req.body.password.length < 8)
-        return res.status(400).send({
+        return res.send({
             status: false,
             message: "Password should be at least 8 characters.",
         });
@@ -21,9 +21,10 @@ registerUser = (req, res) => {
         .then((foundUser) => {
             // console.log(foundUser);
             if (foundUser !== null && foundUser.email === req.body.email) {
-                return res
-                    .status(400)
-                    .send({ status: false, message: "Duplicate Email Found." });
+                return res.send({
+                    status: false,
+                    message: "Duplicate Email Found.",
+                });
             } else {
                 const newUser = new User({
                     firstName: req.body.firstName,
@@ -49,15 +50,18 @@ registerUser = (req, res) => {
 };
 
 loginUser = (req, res) => {
-    console.log("PUT Login");
-    //return res.send({ message: "PUT Login" });
+    console.log("POST Login");
+    //return res.send({ message: "POST Login" });
     console.log(req.body);
 
     User.findOne({ email: req.body.email })
         .then((foundUser) => {
             console.log(foundUser);
             if (foundUser === null) {
-                res.send({ message: "User Email does not exist." });
+                res.send({
+                    status: false,
+                    message: "User Email does not exist.",
+                });
             } else {
                 // res.send({"message":"User Found"})
                 const match = bcrypt.compareSync(
@@ -68,10 +72,12 @@ loginUser = (req, res) => {
                 if (match) {
                     console.log("Password Match");
                     return res.send({
+                        status: true,
                         accessToken: createAccessToken(foundUser),
                     });
                 } else {
                     return res.send({
+                        status: false,
                         message: "Password is incorrect.",
                     });
                 }
