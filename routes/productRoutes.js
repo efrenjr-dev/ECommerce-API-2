@@ -7,6 +7,7 @@ const productControllers = require("../controllers/productControllers");
 const {
     createProduct,
     retrieveAllProducts,
+    retrieveActiveProducts,
     retrieveSingleProduct,
     updateProduct,
     archiveProduct,
@@ -15,7 +16,8 @@ const {
 
 // router.get("/", testController);
 router.post("/", verify, verifyAdmin, createProduct);
-router.get("/", retrieveAllProducts);
+router.get("/all", verify, verifyAdmin, retrieveAllProducts);
+router.get("/", retrieveActiveProducts);
 router.get("/:id", retrieveSingleProduct);
 router.put("/:id", verify, verifyAdmin, updateProduct);
 router.put("/archive/:id", verify, verifyAdmin, archiveProduct);

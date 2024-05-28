@@ -23,6 +23,14 @@ retrieveAllProducts = (req, res) => {
         .catch((err) => res.send(err));
 };
 
+retrieveActiveProducts = (req, res) => {
+    console.log("GET Active Products");
+    // return res.send("GET All Products");
+    Product.find({ isActive: true })
+        .then((products) => res.send(products))
+        .catch((err) => res.send(err));
+};
+
 retrieveSingleProduct = (req, res) => {
     console.log("GET Single Product");
     Product.findById(req.params.id)
@@ -72,6 +80,7 @@ activateProduct = (req, res) => {
 module.exports = {
     createProduct,
     retrieveAllProducts,
+    retrieveActiveProducts,
     retrieveSingleProduct,
     updateProduct,
     archiveProduct,
