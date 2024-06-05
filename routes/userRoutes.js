@@ -12,6 +12,7 @@ const {
     getAllOrders,
     getUserOrders,
     getUserDetails,
+    getSingleOrder,
 } = userControllers;
 
 router.get("/", verify, getUserDetails);
@@ -21,6 +22,7 @@ router.put("/setAdmin/:id", verify, verifyAdmin, setAdmin);
 router.put("/createOrder", verify, verifyNotAdmin, createOrder);
 router.get("/allOrders", verify, verifyAdmin, getAllOrders);
 router.get("/myOrders", verify, verifyNotAdmin, getUserOrders);
+router.get("/order/:id", verify, getSingleOrder);
 
 // router.put("/verify", verify);
 

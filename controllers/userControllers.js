@@ -212,6 +212,25 @@ getUserOrders = (req, res) => {
         .catch((err) => res.send(err));
 };
 
+getSingleOrder = (req, res) => {
+    console.log("GET Single Order");
+
+    User.findById(req.user.id)
+        .then((foundUser) => {
+            let foundOrder = foundUser.orders.filter((order) => {
+                return order._id.toHexString() === req.params.id;
+            });
+
+            if (foundOrder.length > 0) {
+                // console.log(foundOrder[0]);
+                res.send(foundOrder[0]);
+            } else {
+                res.send({ message: `Order not found` });
+            }
+        })
+        .catch((err) => res.send(err));
+};
+
 module.exports = {
     registerUser,
     loginUser,
@@ -220,4 +239,5 @@ module.exports = {
     getAllOrders,
     getUserOrders,
     getUserDetails,
+    getSingleOrder,
 };
