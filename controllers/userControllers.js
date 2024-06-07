@@ -214,8 +214,7 @@ getUserOrders = (req, res) => {
 
 getSingleOrder = (req, res) => {
     console.log("GET Single Order");
-
-    User.findById(req.user.id)
+    User.findOne({ "orders._id": req.params.id })
         .then((foundUser) => {
             let foundOrder = foundUser.orders.filter((order) => {
                 return order._id.toHexString() === req.params.id;

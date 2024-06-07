@@ -14,7 +14,7 @@ createAccessToken = (user) => {
 };
 
 verify = (req, res, next) => {
-    console.log(req.headers.authorization);
+    // console.log(req.headers.authorization);
     // console.log(req.headers.authorization.slice(7));
     // return res.send({ authheader: req.headers.authorization });
     const token = req.headers.authorization.slice(7);
@@ -22,7 +22,7 @@ verify = (req, res, next) => {
         if (err) {
             return res.send(err);
         } else {
-            console.log(decoded);
+            // console.log(decoded);
             req.user = decoded;
             // res.send({ user: decoded });
             next();
