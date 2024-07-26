@@ -9,7 +9,7 @@ main().catch((err) => console.log(err));
 
 async function main() {
     await mongoose.connect(
-        `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.2ttig.gcp.mongodb.net/${process.env.DB_DB}?retryWrites=true&w=majority&appName=SandboxDB`
+        `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.2ttig.gcp.mongodb.net/${process.env.DB_DB}?retryWrites=true&w=majority&appName=${process.env.DB_CLUSTER}`
     );
 }
 
