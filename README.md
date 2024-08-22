@@ -1,7 +1,5 @@
 # Project Name: E-commerce API
 
-(Update 22/Aug/24: Converted to Typescript)
-
 ## Features:
 
 User registration\

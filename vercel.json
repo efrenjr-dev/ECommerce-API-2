@@ -1,4 +1,14 @@
 {
+    "buildCommand": "node index",
+    "devCommand": "nodemon index",
+    "framework": null,
+    "installCommand": "npm install",
+    "builds": [
+        {
+            "src": "/index.js",
+            "use": "@vercel/node"
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",
@@ -6,3 +16,4 @@
         }
     ]
 }
+

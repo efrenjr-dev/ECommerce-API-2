@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
-function createAccessToken(user) {
+createAccessToken = (user) => {
     console.log("AUTH Create Access Token");
     // console.log(user);
     const userData = {
@@ -11,7 +11,7 @@ function createAccessToken(user) {
     };
     console.log(userData);
     return jwt.sign(userData, SECRET, {});
-}
+};
 
 verify = (req, res, next) => {
     // console.log(req.headers.authorization);
