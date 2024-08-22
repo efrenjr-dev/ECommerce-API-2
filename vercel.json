@@ -3,12 +3,6 @@
     "devCommand": "ts-node-dev --pretty --transpile-only api/index.ts",
     "framework": null,
     "installCommand": "npm install",
-    "builds": [
-        {
-            "src": "dist/index.js",
-            "use": "@vercel/node"
-        }
-    ],
     "rewrites": [
         {
             "source": "/(.*)",
