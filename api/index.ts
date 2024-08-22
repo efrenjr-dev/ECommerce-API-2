@@ -25,6 +25,8 @@ app.use("/users", userRouter);
 const productRouter = require("./routes/productRoutes");
 app.use("/products", productRouter);
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
+
 app.listen(port, () => console.log(`Server is running at port ${port}`));
 
 module.exports = app;
