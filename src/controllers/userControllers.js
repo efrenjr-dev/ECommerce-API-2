@@ -52,11 +52,11 @@ registerUser = (req, res) => {
 loginUser = (req, res) => {
     console.log("POST Login");
     //return res.send({ message: "POST Login" });
-    console.log(req.body);
+    // console.log(req.body);
 
     User.findOne({ email: req.body.email })
         .then((foundUser) => {
-            console.log(foundUser);
+            // console.log(foundUser);
             if (foundUser === null) {
                 res.send({
                     status: false,
@@ -68,7 +68,7 @@ loginUser = (req, res) => {
                     req.body.password,
                     foundUser.password
                 );
-                console.log(match);
+                // console.log(match);
                 if (match) {
                     console.log("Password Match");
                     return res.send({
