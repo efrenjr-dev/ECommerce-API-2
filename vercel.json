@@ -1,8 +1,4 @@
 {
-    "buildCommand": "tsc && node dist/index.js",
-    "devCommand": "ts-node-dev --pretty --transpile-only api/index.ts",
-    "framework": null,
-    "installCommand": "npm install",
     "rewrites": [
         {
             "source": "/(.*)",
