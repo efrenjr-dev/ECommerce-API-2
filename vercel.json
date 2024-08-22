@@ -1,8 +1,17 @@
 {
+    "buildCommand": "tsc && node dist/index.js",
+    "framework": null,
+    "installCommand": "npm install",
+    "builds": [
+        {
+            "src": "dist/index.js",
+            "use": "@vercel/node"
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "/dist/index.js"
+            "destination": "dist/index.js"
         }
     ]
 }
