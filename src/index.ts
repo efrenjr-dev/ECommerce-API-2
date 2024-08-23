@@ -1,8 +1,9 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-require("dotenv").config();
-const app = express();
+import express, { Express, Request, Response } from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
+const app: Express = express();
 const port = process.env.PORT || 4000;
 
 main().catch((err) => console.log(err));
@@ -19,15 +20,15 @@ db.once("open", () => console.log("Connected to MongoDB"));
 app.use(cors());
 app.use(express.json());
 
-const userRouter = require("./routes/userRoutes");
+import userRouter from "./routes/userRoutes";
 app.use("/users", userRouter);
 
-const productRouter = require("./routes/productRoutes");
+import productRouter from "./routes/productRoutes";
 app.use("/products", productRouter);
 
-// app.get("/", (request: Express.Request, response: Express.Response) => {
-//     response.status(200).send("Express Ecommerce API");
-// });
+app.get("/", (request: Request, response: Response) => {
+    response.status(200).send("Express Ecommerce API");
+});
 
 app.listen(port, () => console.log(`Server is running at port ${port}`));
 

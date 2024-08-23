@@ -9,7 +9,7 @@ const createAccessToken = (user) => {
         email: user.email,
         isAdmin: user.isAdmin,
     };
-    console.log(userData);
+    // console.log(userData);
     return jwt.sign(userData, SECRET, {});
 };
 
