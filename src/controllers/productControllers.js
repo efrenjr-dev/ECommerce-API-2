@@ -1,7 +1,7 @@
 const Product = require("../models/Product");
 const User = require("../models/User");
 
-createProduct = (req, res) => {
+const createProduct = (req, res) => {
     console.log("POST Create Product");
     // return res.send({ message: "POST Create Product" });
     const newProduct = new Product({
@@ -15,7 +15,7 @@ createProduct = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-retrieveAllProducts = (req, res) => {
+const retrieveAllProducts = (req, res) => {
     console.log("GET All Products");
     // return res.send("GET All Products");
     Product.find()
@@ -23,7 +23,7 @@ retrieveAllProducts = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-retrieveActiveProducts = (req, res) => {
+const retrieveActiveProducts = (req, res) => {
     console.log("GET Active Products");
     // return res.send("GET All Products");
     Product.find({ isActive: true })
@@ -31,14 +31,14 @@ retrieveActiveProducts = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-retrieveSingleProduct = (req, res) => {
+const retrieveSingleProduct = (req, res) => {
     console.log("GET Single Product");
     Product.findById(req.params.id)
         .then((product) => res.send(product))
         .catch((err) => res.send(err));
 };
 
-updateProduct = (req, res) => {
+const updateProduct = (req, res) => {
     console.log("PUT Update Product");
 
     const updates = {
@@ -53,7 +53,7 @@ updateProduct = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-archiveProduct = (req, res) => {
+const archiveProduct = (req, res) => {
     console.log("PUT Archive Product");
 
     const updates = {
@@ -65,7 +65,7 @@ archiveProduct = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-activateProduct = (req, res) => {
+const activateProduct = (req, res) => {
     console.log("PUT Activate Product");
 
     const updates = {

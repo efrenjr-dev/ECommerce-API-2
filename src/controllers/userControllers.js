@@ -4,9 +4,9 @@ const salt = 10;
 const { createAccessToken } = require("../auth");
 const Product = require("../models/Product");
 
-registerUser = (req, res) => {
+const registerUser = (req, res) => {
     console.log("POST User");
-    console.log(req.body);
+    // console.log(req.body);
 
     if (req.body.password.length < 8)
         return res.send({
@@ -15,7 +15,7 @@ registerUser = (req, res) => {
         });
 
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
-    console.log(hashedPassword);
+    // console.log(hashedPassword);
 
     User.findOne({ email: req.body.email })
         .then((foundUser) => {
@@ -49,14 +49,14 @@ registerUser = (req, res) => {
     // res.send({ message: `POST User ${hashedPassword}` });
 };
 
-loginUser = (req, res) => {
+const loginUser = (req, res) => {
     console.log("POST Login");
     //return res.send({ message: "POST Login" });
-    console.log(req.body);
+    // console.log(req.body);
 
     User.findOne({ email: req.body.email })
         .then((foundUser) => {
-            console.log(foundUser);
+            // console.log(foundUser);
             if (foundUser === null) {
                 res.send({
                     status: false,
@@ -68,7 +68,7 @@ loginUser = (req, res) => {
                     req.body.password,
                     foundUser.password
                 );
-                console.log(match);
+                // console.log(match);
                 if (match) {
                     console.log("Password Match");
                     return res.send({
@@ -86,11 +86,11 @@ loginUser = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-getUserDetails = (req, res) => {
+const getUserDetails = (req, res) => {
     res.send(req.user);
 };
 
-setAdmin = (req, res) => {
+const setAdmin = (req, res) => {
     console.log("PUT Set Admin");
     // return res.send({ message: "PUT Set Admin", id: req.params.id });
 
@@ -106,7 +106,7 @@ setAdmin = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-createOrder = async (req, res) => {
+const createOrder = async (req, res) => {
     console.log("PUT Create Order");
 
     let productsArray = [];
@@ -120,7 +120,7 @@ createOrder = async (req, res) => {
             quantity: product.quantity,
         };
     });
-    console.log(productsArray);
+    // console.log(productsArray);
 
     let isUserUpdated = await User.findById(req.user.id).then((foundUser) => {
         foundUser.orders.push({
@@ -182,7 +182,7 @@ createOrder = async (req, res) => {
     }
 };
 
-getAllOrders = (req, res) => {
+const getAllOrders = (req, res) => {
     console.log("GET All Orders");
 
     let ordersArray = [];
@@ -202,7 +202,7 @@ getAllOrders = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-getUserOrders = (req, res) => {
+const getUserOrders = (req, res) => {
     console.log("GET User Orders");
 
     User.findById(req.user.id)
@@ -212,7 +212,7 @@ getUserOrders = (req, res) => {
         .catch((err) => res.send(err));
 };
 
-getSingleOrder = (req, res) => {
+const getSingleOrder = (req, res) => {
     console.log("GET Single Order");
     User.findOne({ "orders._id": req.params.id })
         .then((foundUser) => {

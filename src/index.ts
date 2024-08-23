@@ -25,6 +25,10 @@ app.use("/users", userRouter);
 const productRouter = require("./routes/productRoutes");
 app.use("/products", productRouter);
 
+// app.get("/", (request: Express.Request, response: Express.Response) => {
+//     response.status(200).send("Express Ecommerce API");
+// });
+
 app.listen(port, () => console.log(`Server is running at port ${port}`));
 
 module.exports = app;
