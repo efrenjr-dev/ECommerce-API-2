@@ -2,7 +2,10 @@ import assert from "assert";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-assert(process.env.SECRET, "JWT SECRET must be defined.");
+// assert(process.env.SECRET, "JWT SECRET must be defined.");
+if (!process.env.SECRET) {
+    throw new Error("JWT SECRET must be defined.");
+}
 const SECRET = process.env.SECRET;
 
 type User = {
@@ -30,8 +33,7 @@ const createAccessToken = (user: User) => {
 const verify = (req: VerifyRequest, res: Response, next: NextFunction) => {
     // console.log(req.headers.authorization);
     // console.log(req.headers.authorization.slice(7));
-    // return res.send({ authheader: req.headers.authorization });
-    assert(req.headers.authorization, "Authorization header is missing.");
+    // assert(req.headers.authorization, "Authorization header is missing.");
     if (!req.headers.authorization) {
         throw new Error("Authorization header is missing.");
     }
