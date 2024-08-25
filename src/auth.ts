@@ -52,7 +52,7 @@ const verify = (req: VerifyRequest, res: Response, next: NextFunction) => {
 
 const verifyAdmin = (req: VerifyRequest, res: Response, next: NextFunction) => {
     if (!req.user.isAdmin) {
-        res.send({ message: "User not authorized." });
+        return res.send({ message: "User not authorized." });
     }
     next();
 };
@@ -63,7 +63,7 @@ const verifyNotAdmin = (
     next: NextFunction
 ) => {
     if (req.user.isAdmin) {
-        res.send({ message: "User not authorized." });
+        return res.send({ message: "User not authorized." });
     }
     next();
 };
