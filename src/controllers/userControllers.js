@@ -1,4 +1,4 @@
-const User = require("../models/User");
+import User from "../models/User";
 const bcrypt = require("bcrypt");
 const salt = 10;
 const { createAccessToken } = require("../auth");
