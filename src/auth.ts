@@ -1,4 +1,4 @@
-import assert from "assert";
+// import assert from "assert";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
@@ -35,7 +35,7 @@ const verify = (req: VerifyRequest, res: Response, next: NextFunction) => {
     // console.log(req.headers.authorization.slice(7));
     // assert(req.headers.authorization, "Authorization header is missing.");
     if (!req.headers.authorization) {
-        throw new Error("Authorization header is missing.");
+        return res.send("User not authorized");
     }
     const token = req.headers.authorization.slice(7);
     jwt.verify(token, SECRET, function (err, decoded) {
